@@ -1,23 +1,23 @@
 '''
 DO A REPL
 '''
-import clint
 import json
 import psycopg2
 import signal
 import sys
 import twitter
 
-from prompt_toolkit import prompt;
+from prompt_toolkit import prompt
 
+
+
+#
+# CONFIG SETUP
+#
 config = {}
 
 with open('./config.json', 'r') as json_data_file:
     config = json.load(json_data_file)
-
-if __name__ == '__main__':
-    answer = prompt('sup')
-    print(answer)
 
 # Brought over from tw.py
 
@@ -112,10 +112,12 @@ def parse_command(command):
     print('unknown command - enter \'help\' for command list')
     return True
 
+if __name__ == '__main__':
+  while True:
+    user_input = prompt('-> ')
 
-while True:
-  user_input = clint.textui.prompt.query('-> ')
-  if parse_command(user_input):
-    continue
-  else:
-    break
+    if parse_command(user_input):
+      continue
+    else:
+      break
+
